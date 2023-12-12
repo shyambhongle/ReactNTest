@@ -1,5 +1,10 @@
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RootStackParamList} from '../../ts/app.type';
+
+const BackIcon = require('../../assets/images/back.png');
 
 interface Props {
   title: string;
@@ -7,9 +12,17 @@ interface Props {
 }
 
 const Header = (props: Props) => {
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+  const goBack = () => {
+    navigation.goBack();
+  };
   return (
     <View style={styles.container}>
-      <Pressable style={styles.backIcon}></Pressable>
+      {props.showBack && (
+        <Pressable style={styles.backIcon} onPress={goBack}>
+          <Image source={BackIcon} style={styles.backIcon} />
+        </Pressable>
+      )}
       <Text style={styles.title}>{props.title}</Text>
     </View>
   );
@@ -26,14 +39,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 18,
+    fontSize: 20,
     color: '#262626',
-    fontWeight: '400',
+    fontFamily: 'Poppins-Bold',
   },
   backIcon: {
-    width: 50,
-    height: 50,
+    width: 20,
+    height: 20,
     position: 'absolute',
-    left: 10,
+    left: 15,
   },
 });

@@ -10,7 +10,7 @@ const RootNavigator = () => {
     <RootStack.Navigator>
       <RootStack.Screen
         name="Login"
-        component={Screen.OtpVerify}
+        component={Screen.Login}
         options={{headerShown: false}}
       />
       <RootStack.Screen

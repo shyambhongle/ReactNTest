@@ -1,12 +1,4 @@
-import {
-  Image,
-  KeyboardAvoidingView,
-  Platform,
-  StatusBar,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {Image, StatusBar, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import Header from '../components/common/Header';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -14,40 +6,54 @@ import Button from '../components/common/Button';
 import Terms from '../components/auth/Terms';
 import CopyRight from '../components/auth/CopyRight';
 import OtpInput from '../components/auth/OtpInput';
+import {useRoute, RouteProp} from '@react-navigation/native';
+import {RootStackParamList} from '../ts/app.type';
+import DropdownAlert, {
+  DropdownAlertData,
+  DropdownAlertType,
+} from 'react-native-dropdownalert';
 
-const CoverImage = require('../assest/images/cover.png');
+const CoverImage = require('../assets/images/cover.png');
 
 const OtpVerify = () => {
+  const route = useRoute<RouteProp<RootStackParamList, 'OtpVerify'>>();
+  const {ph, code} = route.params;
+  let alert = (_data: DropdownAlertData) =>
+    new Promise<DropdownAlertData>(res => res);
+  const handleSubmit = async () => {
+    await alert({
+      type: DropdownAlertType.Success,
+      title: 'Success',
+      message: 'Your details has been submitted',
+    });
+  };
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.container}>
-      <SafeAreaView style={styles.container}>
-        <StatusBar
-          animated={true}
-          backgroundColor="#ffffff"
-          barStyle="dark-content"
+    <SafeAreaView style={styles.container}>
+      <StatusBar
+        animated={true}
+        backgroundColor="#ffffff"
+        barStyle="dark-content"
+      />
+      <Header title="OTP Verify" showBack />
+      <View style={styles.coverImageWrapper}>
+        <Image
+          source={CoverImage}
+          style={styles.coverImage}
+          resizeMode="contain"
         />
-        <Header title="OTP Verify" />
-        <View style={styles.coverImageWrapper}>
-          <Image
-            source={CoverImage}
-            style={styles.coverImage}
-            resizeMode="contain"
-          />
-        </View>
-        <View style={styles.divideWrapper}>
-          <Text style={styles.otpNote}>OTP Sent to</Text>
-          <Text style={styles.phPlaceholder}>+9199188281</Text>
-        </View>
-        <View style={styles.sectionWrapper}>
-          <OtpInput />
-          <Button label="Verify OTP" cb={() => {}} />
-          <Terms />
-          <CopyRight />
-        </View>
-      </SafeAreaView>
-    </KeyboardAvoidingView>
+      </View>
+      <View style={styles.divideWrapper}>
+        <Text style={styles.otpNote}>OTP Sent to</Text>
+        <Text style={styles.phPlaceholder}>{`${code} ${ph}`}</Text>
+      </View>
+      <View style={styles.sectionWrapper}>
+        <OtpInput />
+        <Button label="Verify OTP" cb={handleSubmit} />
+        <Terms />
+        <CopyRight />
+      </View>
+      <DropdownAlert alert={func => (alert = func)} />
+    </SafeAreaView>
   );
 };
 
@@ -74,7 +80,6 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    // backgroundColor: 'green',
   },
   phoneWrapper: {
     width: '90%',
@@ -91,11 +96,13 @@ const styles = StyleSheet.create({
     height: 70,
   },
   phPlaceholder: {
-    fontSize: 18,
+    fontSize: 16,
     color: '#262626',
+    fontFamily: 'Poppins-Medium',
   },
   otpNote: {
-    fontSize: 18,
+    fontSize: 16,
     color: '#262626',
+    fontFamily: 'Poppins-Regular',
   },
 });

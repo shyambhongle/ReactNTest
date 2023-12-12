@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     borderRadius: 10,
     borderColor: 'gray',
+    marginBottom: 50,
   },
   focusCell: {
     borderColor: '#000',

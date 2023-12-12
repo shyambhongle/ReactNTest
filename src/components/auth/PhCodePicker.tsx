@@ -1,18 +1,30 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Dropdown} from 'react-native-element-dropdown';
 
 const data = [
-  {label: '+91', value: '1'},
-  {label: '+707', value: '2'},
-  {label: '12', value: '3'},
-  {label: '+91', value: '1'},
-  {label: '+707', value: '2'},
-  {label: '12', value: '3'},
+  {label: '+91', value: '+91'},
+  {label: '+54', value: '+54'},
+  {label: '+61', value: '+61'},
+  {label: '+43', value: '+43'},
+  {label: '+32', value: '+32'},
+  {label: '+55', value: '+55'},
+  {label: '+1', value: '+1'},
+  {label: '+61', value: '+61'},
+  {label: '+57', value: '+57'},
+  {label: '+20', value: '+20'},
+  {label: '+45', value: '+45'},
+  {label: '+32', value: '+32'},
+  {label: '+55', value: '+55'},
+  {label: '+33', value: '+33'},
 ];
-const PhCodePicker = () => {
-  const [value, setValue] = useState<string>('+91');
 
+interface Props {
+  cb: (code: string) => void;
+  code: string;
+}
+
+const PhCodePicker = (props: Props) => {
   return (
     <View style={styles.container}>
       <Dropdown
@@ -23,10 +35,10 @@ const PhCodePicker = () => {
         maxHeight={300}
         labelField="label"
         valueField="value"
-        placeholder={value}
-        value={value}
+        placeholder={props.code}
+        value={props.code}
         onChange={item => {
-          setValue(item.value);
+          props.cb(item.value);
         }}
       />
     </View>
@@ -41,6 +53,7 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
+    marginLeft: 10,
   },
   dropdown: {
     height: 50,
@@ -48,6 +61,7 @@ const styles = StyleSheet.create({
   },
   selectedTextStyle: {
     fontSize: 16,
+    fontFamily: 'Poppins-Regular',
   },
   iconStyle: {
     width: 20,

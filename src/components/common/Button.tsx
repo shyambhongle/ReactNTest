@@ -22,13 +22,14 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: '90%',
+    width: '85%',
     height: 50,
-    backgroundColor: 'red',
+    backgroundColor: '#E44533',
     borderRadius: 50,
   },
   lablel: {
     color: '#ffffff',
     fontSize: 18,
+    fontFamily: 'Poppins-Medium',
   },
 });

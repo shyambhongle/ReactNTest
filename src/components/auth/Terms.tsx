@@ -1,12 +1,14 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import CopyRight from './CopyRight';
 
 const Terms = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>
-        By Signing Up you agree with out Terms and Condition
+        By signing up you agree with our Terms and Conditions
       </Text>
+      <CopyRight />
     </View>
   );
 };
@@ -15,14 +17,17 @@ export default Terms;
 
 const styles = StyleSheet.create({
   container: {
-    width: '90%',
-    paddingHorizontal: 10,
-    marginVertical: 10,
+    paddingHorizontal: 20,
+    flex: 1,
+    width: '80%',
+    justifyContent: 'flex-end',
+    marginBottom: 10,
   },
   label: {
     width: '100%',
     textAlign: 'center',
-    fontSize: 14,
-    color: 'gray',
+    fontSize: 12,
+    color: '#787878',
+    fontFamily: 'Poppins-Regular',
   },
 });
