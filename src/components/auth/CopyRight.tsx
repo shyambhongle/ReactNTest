@@ -4,7 +4,7 @@ import React from 'react';
 const CopyRight = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>©Learnify Technologies Pvt. Ltd</Text>
+      <Text style={styles.label}>©learnfy.co</Text>
     </View>
   );
 };

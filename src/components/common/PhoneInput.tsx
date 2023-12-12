@@ -12,6 +12,7 @@ const PhoneInput = (props: Props) => {
       placeholder="Phone Number"
       keyboardType="phone-pad"
       onChangeText={props.cb}
+      returnKeyType="done"
     />
   );
 };
