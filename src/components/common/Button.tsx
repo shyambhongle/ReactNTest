@@ -11,7 +11,7 @@ const Button = (props: Props) => {
 
   return (
     <Pressable style={styles.container} onPress={cb}>
-      <Text>{label}</Text>
+      <Text style={styles.lablel}>{label}</Text>
     </Pressable>
   );
 };
@@ -26,5 +26,9 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: 'red',
     borderRadius: 50,
+  },
+  lablel: {
+    color: '#ffffff',
+    fontSize: 18,
   },
 });
