@@ -1,4 +1,4 @@
-import {Pressable, StyleSheet, Text} from 'react-native';
+import {TouchableHighlight, StyleSheet, Text} from 'react-native';
 import React from 'react';
 
 interface Props {
@@ -10,9 +10,12 @@ const Button = (props: Props) => {
   const {label, cb} = props;
 
   return (
-    <Pressable style={styles.container} onPress={cb}>
+    <TouchableHighlight
+      style={styles.container}
+      onPress={cb}
+      underlayColor="#ec7c70">
       <Text style={styles.lablel}>{label}</Text>
-    </Pressable>
+    </TouchableHighlight>
   );
 };
 
